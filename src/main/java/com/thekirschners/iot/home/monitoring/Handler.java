@@ -16,12 +16,9 @@
 
 package com.thekirschners.iot.home.monitoring;
 
+import com.thekirschners.iot.home.monitoring.domain.ClimateReading;
 import org.springframework.cloud.function.adapter.aws.SpringBootRequestHandler;
 
-/**
- * @author Dave Syer
- *
- */
-public class Handler extends SpringBootRequestHandler<Foo, Bar> {
+public class Handler extends SpringBootRequestHandler<ClimateReading, ClimateReading> {
 
 }

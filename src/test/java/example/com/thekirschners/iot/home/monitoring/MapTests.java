@@ -16,11 +16,7 @@
 
 package example.com.thekirschners.iot.home.monitoring;
 
-import com.thekirschners.iot.home.monitoring.Config;
-import com.thekirschners.iot.home.monitoring.Properties;
 import org.junit.Test;
-
-import org.springframework.cloud.function.adapter.aws.SpringBootRequestHandler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

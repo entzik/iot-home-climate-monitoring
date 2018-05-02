@@ -27,7 +27,7 @@
 		<reactor.version>3.1.2.RELEASE</reactor.version>
 		<spring-cloud-function.version>1.0.0.BUILD-SNAPSHOT</spring-cloud-function.version>
 		<spring-cloud-stream-servlet.version>1.0.0.BUILD-SNAPSHOT</spring-cloud-stream-servlet.version>
-		<start-class>com.thekirschners.iot.home.monitoring.Config</start-class>
+		<start-class>com.thekirschners.iot.home.monitoring.Application</start-class>
 	</properties>
 
 	<dependencies>

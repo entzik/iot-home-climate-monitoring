@@ -53,20 +53,51 @@ jar {
   }
 }
 
-shadowJar {
-  classifier = 'aws'
-  dependencies {
-    exclude(dependency("org.springframework.cloud:spring-cloud-function-web:${springCloudFunctionVersion}"))
-  }
+ext {
+	mainClass = 'com.thekirschners.iot.home.monitoring.Application'
 }
 
+shadowJar {
+	classifier = 'aws'
+	mergeServiceFiles()
+	mergeGroovyExtensionModules()
+	manifest {
+		attributes(
+				'Main-Class': mainClass,
+				'Start-Class': mainClass,
+				'Spring-Boot-Classes': ''
+		)
+	}
+	dependencies {
+		exclude dependency("org.springframework.cloud:spring-cloud-function-web:$springCloudFunctionVersion")
+	}
+	transform(com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer) {
+		mergeSeparator = ','
+		mergeStrategy = 'append'
+		paths = [
+				'META-INF/spring.factories',
+				'META-INF/spring.handlers',
+				'META-INF/spring.provides',
+				'META-INF/spring.schemas',
+				'META-INF/spring.tooling',
+				'META-INF/spring-autoconfigure-metadata.properties',
+		]
+	}
+}
 configurations {
     testCompile.extendsFrom(compileOnly)
 }
 
 dependencies {
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.cloud:spring-cloud-starter-function-web:${springCloudFunctionVersion}")
 	compile("org.springframework.cloud:spring-cloud-function-adapter-aws:${springCloudFunctionVersion}")
+	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+	compile("org.hibernate:hibernate-core")
+	compile("org.hibernate:hibernate-entitymanager")
+	compile('org.liquibase:liquibase-core')
+	runtime('org.postgresql:postgresql')
+	compile('com.zaxxer:HikariCP')
 	compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
 	compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
