@@ -40,8 +40,8 @@ repositories {
 
 ext {
 	springCloudFunctionVersion = "1.0.0.BUILD-SNAPSHOT"
-    awsLambdaEventsVersion = "1.2.1"
-    awsLambdaCoreVersion = "1.1.0"
+    awsLambdaEventsVersion = "2.1.0"
+    awsLambdaCoreVersion = "1.2.0"
 }
 ext['reactor.version'] = "3.1.2.RELEASE"
 
@@ -98,7 +98,7 @@ dependencies {
 	compile('org.liquibase:liquibase-core')
 	runtime('org.postgresql:postgresql')
 	compile('com.zaxxer:HikariCP')
-	compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
-	compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
+	compile("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
+	compile("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

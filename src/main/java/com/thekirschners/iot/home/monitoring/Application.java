@@ -1,8 +1,11 @@
 package com.thekirschners.iot.home.monitoring;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 import com.thekirschners.iot.home.monitoring.domain.ClimateReading;
+import com.thekirschners.iot.home.monitoring.domain.ClimateResponse;
+import com.thekirschners.iot.home.monitoring.domain.Headers;
 import com.thekirschners.iot.home.monitoring.repository.ClimateReadingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
